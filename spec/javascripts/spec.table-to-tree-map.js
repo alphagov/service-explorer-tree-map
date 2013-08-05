@@ -15,7 +15,7 @@ describe("Table To Treemap", function () {
   });
 
   it("should convert html table to d3 treemap representation", function () {
-    var treeMap = extractD3TreeMap(d3.selectAll("tbody tr"), 20);
+    var treeMap = TreeMap.extractD3TreeMap(d3.selectAll("tbody tr"), 20);
     
     expect(treeMap.name).toBe("Service Explorer");
     expect(treeMap.children[0].name).toBe("service1");
@@ -27,7 +27,7 @@ describe("Table To Treemap", function () {
   });
 
   it("should group values lower than a threshold", function () {
-    var treeMap = extractD3TreeMap(d3.selectAll("tbody tr"), 20);
+    var treeMap = TreeMap.extractD3TreeMap(d3.selectAll("tbody tr"), 20);
 
     console.log(treeMap);
     expect(treeMap.children[3].name).toBe("Others");

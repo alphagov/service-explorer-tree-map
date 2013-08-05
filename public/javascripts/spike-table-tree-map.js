@@ -34,6 +34,6 @@ function makeTree(treeData) {
 }
 
 
-var data = extractD3TreeMap(d3.selectAll("tbody tr"), 200);
-console.log(data);
-makeTree(data);
+//var data = extractD3TreeMap(d3.selectAll("tbody tr"), 200);
+//console.log(data);
+//makeTree(data);
