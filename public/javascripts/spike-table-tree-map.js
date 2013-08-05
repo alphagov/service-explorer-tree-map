@@ -2,7 +2,8 @@ function position() {
   this.style("left", function(d) { return d.x + "px"; })
       .style("top", function(d) { return d.y + "px"; })
       .style("width", function(d) { return Math.max(0, d.dx - 1) + "px"; })
-      .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; });
+      .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; })
+      .style("position", "absolute");
 }
 
 function makeTree(treeData) {
@@ -14,7 +15,6 @@ function makeTree(treeData) {
   
   var treemap = d3.layout.treemap()
       .size([width, height])
-      .sticky(true)
       .value(function(d) { return d.size; });
   
   var div = d3.select("body").append("div")
@@ -24,16 +24,16 @@ function makeTree(treeData) {
       .style("left", margin.left + "px")
       .style("top", margin.top + "px");
   
-  d3.json(treeData, function(error, root) {
-    var node = div.datum(root).selectAll(".node")
-        .data(treemap.nodes)
-      .enter().append("div")
-        .attr("class", "node")
-        .call(position)
-        .style("background", function(d) { return d.children ? color(d.name) : null; })
-        .text(function(d) { return d.children ? null : d.name; });
-  });
-  
+  var node = div.datum(treeData).selectAll(".node")
+      .data(treemap.nodes)
+    .enter().append("div")
+      .attr("class", "node")
+      .call(position)
+      .style("background", function(d) { return d.children ? null : color(d.name); })
+      .text(function(d) { return d.children ?  null : d.name; });
 }
 
-d3.selectAll("tbody.tr");
+
+var data = extractD3TreeMap(d3.selectAll("tbody tr"));
+console.log(data);
+makeTree(data);
