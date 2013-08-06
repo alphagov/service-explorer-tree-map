@@ -56,8 +56,8 @@ var Tree = (function () {
 
 var TreeMapLayout = (function () {
     var position = function() {
-        this.style("right", function(d) { return d.x + 1 + "px"; })
-        .style("bottom", function(d) { return d.y + 1 + "px"; })
+        this.style("left", function(d) { return d.x + 1 + "px"; })
+        .style("top", function(d) { return d.y + 1 + "px"; })
         .style("width", function(d) { return Math.max(0, d.dx - 1) + "px"; })
         .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; })
         .style('position','absolute');
@@ -72,10 +72,12 @@ var TreeMapLayout = (function () {
     
     var treemap = d3.layout.treemap()
         .size([width, height])
-        .value(function(d) { return d.size; });
+        .value(function(d) { return d.size; })
+        .sort(function(a, b) {
+          return a.value - b.value;
+        });
     
     var div = d3.select('#'+divId)
-        .style("position", "relative")
         .style("width", (width + margin.left + margin.right) + "px")
         .style("height", (height + margin.top + margin.bottom) + "px")
         .style("left", margin.left + "px")
@@ -87,6 +89,7 @@ var TreeMapLayout = (function () {
         .attr("class", "node")
         .call(position)
         .style("background", function(d) { return d.children ? null : color(d.name); })
+
         .text(function(d) { return d.children ?  null : d.name; });
   };
   
