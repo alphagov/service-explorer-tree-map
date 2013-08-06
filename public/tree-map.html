@@ -147,6 +147,9 @@
     </table>
     <script src="javascripts/d3.js"></script>
     <script src="javascripts/table-to-tree-map.js"></script>
-    <script src="javascripts/spike-table-tree-map.js"></script>
+    <script>
+      var tree = Tree.fromHtmlTable(d3.selectAll("tbody tr"), 200);
+      TreeMapLayout.display(tree);
+    </script>
 </body>
 </html>
