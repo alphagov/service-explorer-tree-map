@@ -12,6 +12,7 @@ describe("Table To Treemap", function () {
 
   afterEach(function () {;
     d3.selectAll("table").data([]).exit().remove();
+    d3.selectAll("div#testmap").data([]).exit().remove();
   });
 
   describe("HTML Table to D3 TreeMap", function () {
@@ -46,7 +47,7 @@ describe("Table To Treemap", function () {
         ]
       };
 
-      TreeMapLayout.display(data);
+      TreeMapLayout.display("testmap", data);
 
       var treeNodes = d3.selectAll('div.node')[0].map(function(d) { return d.innerHTML; });
 

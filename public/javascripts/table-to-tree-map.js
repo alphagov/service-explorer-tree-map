@@ -63,7 +63,7 @@ var TreeMapLayout = (function () {
         .style("position", "absolute");
   };
   
-  var makeTree = function (treeData) {
+  var makeTree = function (divId, treeData) {
     var margin = {top: 40, right: 10, bottom: 10, left: 10},
         width = 960 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
@@ -75,6 +75,7 @@ var TreeMapLayout = (function () {
         .value(function(d) { return d.size; });
     
     var div = d3.select("body").append("div")
+        .attr("id", divId)
         .style("position", "relative")
         .style("width", (width + margin.left + margin.right) + "px")
         .style("height", (height + margin.top + margin.bottom) + "px")
