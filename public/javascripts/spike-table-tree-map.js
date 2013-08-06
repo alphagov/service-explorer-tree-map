@@ -29,11 +29,11 @@ function makeTree(treeData) {
     .enter().append("div")
       .attr("class", "node")
       .call(position)
-      .style("background", function(d) { return d.children ? null : color(d.name); });
-//      .text(function(d) { return d.children ?  null : d.name; });
+      .style("background", function(d) { return d.children ? null : color(d.name); })
+      .text(function(d) { return d.children ?  null : d.name; });
 }
 
 
-//var data = extractD3TreeMap(d3.selectAll("tbody tr"), 200);
+//var data = TreeMap.extractD3TreeMap(d3.selectAll("tbody tr"), 200);
 //console.log(data);
 //makeTree(data);
