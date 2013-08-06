@@ -24,3 +24,7 @@ The following script will convert the table into a tree and apply the tree map l
       var tree = Tree.fromHtmlTable(d3.selectAll("tbody tr"), 200);
       TreeMapLayout.display("services-treemap", tree);
     </script>
+
+## Example
+
+* https://github.com/alphagov/service-explorer-tree-map/blob/master/public/tree-map.html
