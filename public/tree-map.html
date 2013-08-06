@@ -2,6 +2,9 @@
   <head>
   </head>
   <body>
+
+    <div id='myTreeMap'></div>
+
     <table id="transactions-table" class="full_width_table">
             <thead>
             <tr>
@@ -149,7 +152,7 @@
     <script src="javascripts/table-to-tree-map.js"></script>
     <script>
       var tree = Tree.fromHtmlTable(d3.selectAll("tbody tr"), 200);
-      TreeMapLayout.display("my-treemap", tree);
+      TreeMapLayout.display("myTreeMap", tree);
     </script>
 </body>
 </html>

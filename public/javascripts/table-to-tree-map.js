@@ -55,16 +55,16 @@ var Tree = (function () {
 }());
 
 var TreeMapLayout = (function () {
-  var position = function () {
-    this.style("left", function(d) { return d.x + "px"; })
-        .style("top", function(d) { return d.y + "px"; })
+    var position = function() {
+        this.style("right", function(d) { return d.x + 1 + "px"; })
+        .style("bottom", function(d) { return d.y + 1 + "px"; })
         .style("width", function(d) { return Math.max(0, d.dx - 1) + "px"; })
         .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; })
-        .style("position", "absolute");
-  };
+        .style('position','absolute');
+    }
   
   var makeTree = function (divId, treeData) {
-    var margin = {top: 40, right: 10, bottom: 10, left: 10},
+    var margin = {top: 0, right: 0, bottom: 40, left: 0},
         width = 960 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
     
@@ -74,8 +74,7 @@ var TreeMapLayout = (function () {
         .size([width, height])
         .value(function(d) { return d.size; });
     
-    var div = d3.select("body").append("div")
-        .attr("id", divId)
+    var div = d3.select('#'+divId)
         .style("position", "relative")
         .style("width", (width + margin.left + margin.right) + "px")
         .style("height", (height + margin.top + margin.bottom) + "px")
@@ -84,7 +83,7 @@ var TreeMapLayout = (function () {
     
     var node = div.datum(treeData).selectAll(".node")
         .data(treemap.nodes)
-      .enter().append("div")
+        .enter().append("div")
         .attr("class", "node")
         .call(position)
         .style("background", function(d) { return d.children ? null : color(d.name); })
