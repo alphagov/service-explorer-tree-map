@@ -1,5 +1,7 @@
 # Service Explorer Tree Map
 
+[![Build Status](https://travis-ci.org/alphagov/service-explorer-tree-map.png?branch=master)](https://travis-ci.org/alphagov/service-explorer-tree-map)
+
 ## What is it
 
 [D3 Treemap](https://github.com/mbostock/d3/wiki/Treemap-Layout) visualisation to be used on the [Service Explorer](https://github.com/alphagov/service-explorer) project.
