@@ -4,7 +4,8 @@ var Tree = (function () {
     return selection[0].map(function (row) {
       return { 
         name: row.getAttribute("data-title"),
-        size: parseInt(row.getAttribute("data-volume"))
+        size: parseInt(row.getAttribute("data-volume")),
+        url: row.getAttribute("data-url")
       };
     });
   };
@@ -60,7 +61,8 @@ var TreeMapLayout = (function () {
         .style("top", function(d) { return d.y + 1 + "px"; })
         .style("width", function(d) { return Math.max(0, d.dx - 1) + "px"; })
         .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; })
-        .style('position','absolute');
+        .style('position','absolute')
+        .style("cursor", function(d) { return d.url ? "pointer" : ""; });
     }
   
   var makeTree = function (divId, treeData) {
@@ -84,13 +86,18 @@ var TreeMapLayout = (function () {
         .style("top", margin.top + "px");
     
     var node = div.datum(treeData).selectAll(".node")
-        .data(treemap.nodes)
-        .enter().append("div")
-        .attr("class", "node")
-        .call(position)
-        .style("background", function(d) { return d.children ? null : color(d.name); })
-
-        .text(function(d) { return d.children ?  null : d.name; });
+      .data(treemap.nodes)
+      .enter().append("div")
+      .attr("class", "node")
+      .call(position)
+      .on("click", function(d) {
+        if (d.url){
+          console.log('TODO make me go to ' + d.url);
+        }
+      })
+      .style("background", function(d) { return d.children ? null : color(d.name); })
+      .attr('href',function(d){ return d.url ? d.url : null })
+      .text(function(d) { return d.children ?  null : d.name; });
   };
   
   return {
